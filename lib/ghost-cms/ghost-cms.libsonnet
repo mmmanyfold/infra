@@ -1,8 +1,6 @@
 (import "ksonnet-util/kausal.libsonnet") +
-(import "./config.libsonnet") +
 {
-
-  local c = $._config.cfdBlog,
+  local c = $._config.mmmBlog,
   local deployment = $.apps.v1.deployment,
   local container = $.core.v1.container,
   local port = $.core.v1.containerPort,
@@ -31,12 +29,12 @@
     },
   },
 
-  cfdBlog: {
+  mmmBlog: {
     deployment: deployment.new(
       name=c.ghost.name,
       replicas=1,
       containers=[
-        container.new(c.ghost.name, $._images.cfdBlog.ghost) +
+        container.new(c.ghost.name, $._images.mmmBlog.ghost) +
         container.withPorts([port.new("http", c.ghost.port)]) +
         container.withVolumeMounts([
           { mountPath: c.ghost.mountPath, name: c.ghost.name},

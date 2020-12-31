@@ -1,6 +1,6 @@
 {
   _config+:: {
-  cfdBlog: {
+  mmmBlog: {
     ghost: {
        port: 2368,
        name: "ghost-cms",
@@ -11,7 +11,7 @@
    },
   },
   _images+:: {
-    cfdBlog: {
+    mmmBlog: {
       ghost: "ghost:3.40-alpine"
     }
   }
