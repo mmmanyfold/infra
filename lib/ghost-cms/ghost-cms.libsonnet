@@ -35,10 +35,11 @@
       replicas=1,
       containers=[
         container.new(c.ghost.name, $._images.mmmBlog.ghost) +
-        container.withPorts([port.new("http", c.ghost.port)]) +
+        container.withPorts([port.new("container-port", c.ghost.port)]) +
         container.withVolumeMounts([
           { mountPath: c.ghost.mountPath, name: c.ghost.name},
-        ]),
+        ]) +
+        container.withEnvMap({url: "https://blog.kimchitaco.club"}),
       ],
     ) +
     deployment.mixin.spec.template.spec.withVolumes([{
@@ -48,7 +49,9 @@
        }
       },
     ]),
-    service: $.util.serviceFor(self.deployment),
+    service: $.util.serviceFor(self.deployment) {
+      spec+: { type: "LoadBalancer" },
+    },
     volumes: pvc,
   }
 }
