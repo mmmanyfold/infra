@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog
+  labels:
+    app: blog
+    role: master
+    tier: backend
+spec:
+  ports:
+    - name: blog
+      port: 2368
+      targetPort: 2368
+  selector:
+    app: blog
+    role: master
+    tier: backend
