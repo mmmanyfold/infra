@@ -2,11 +2,11 @@
   "apiVersion": "tanka.dev/v1alpha1",
   "kind": "Environment",
   "metadata": {
-    "name": "environments/ghost-cms/dev"
+    "name": "environments/ghost-cms/prod"
   },
   "spec": {
-    "apiServer": "https://192.168.99.100:8443",
-    "namespace": "ghost-cms-dev",
+    "apiServer": "https://5361626e-e626-4ce3-94e3-eec0be99f4fb.k8s.ondigitalocean.com",
+    "namespace": "mmm",
     "resourceDefaults": {},
     "expectVersions": {}
   }
