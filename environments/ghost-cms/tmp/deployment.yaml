@@ -14,12 +14,47 @@ spec:
       labels:
         app: blog
     spec:
+      volumes:
+        - name: content
+          persistentVolumeClaim:
+            claimName: blog-content
       containers:
         - name: blog
           image: ghost:3.40-alpine
           imagePullPolicy: Always
           ports:
             - containerPort: 2368
-#          env:
-#            - name: url
-#              value: https://blog.mmmanyfold.com
+          volumeMounts:
+            - name: content
+              mountPath: /var/lib/ghost/content
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: blog-content
+  labels:
+    app: blog
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog
+  labels:
+    app: blog
+    role: master
+    tier: backend
+spec:
+  ports:
+    - name: blog
+      port: 2368
+      targetPort: 2368
+  selector:
+    app: blog
+    role: master
+    tier: backend

@@ -1,8 +1,9 @@
 # `mmmanyfold/infra`
 
-Declarative infrastructure project for mmmanyfold 
+Declarative infrastructure project for mmmanyfold
 
 ### DEPENDENCIES
+
 - [kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [kubectx + kubens](https://github.com/ahmetb/kubectx)
 - [tanka & jsonnet-bundler](https://tanka.dev/install)
@@ -11,8 +12,10 @@ Declarative infrastructure project for mmmanyfold
 - jb `go get -u github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb`
 
 ### SETUP
+
 - `jb install`
 - helpful kubernetes aliases and env vars
+
 ```bash
 export KUBE_EDITOR="emacs" # vim, vscode, etc..
 alias gc="gcloud"
@@ -25,10 +28,12 @@ alias kns="kubens"
 ### TANKA
 
 #### CMDs
-creating a new managed environment 
+
+creating a new managed environment
 `tk env add environments/<project>/<env> --namespace=<project>-<environment>`
 
 examples:
+
 - `tk env add environments/prom-grafana/dev --namespace=prom-grafana-dev`
 - `tk env add environments/prom-grafana/stage --namespace=prom-grafana-stage`
 - `tk env add environments/prom-grafana/prod --namespace=prom-grafana-prod`
@@ -41,7 +46,7 @@ Applying configuration environment
 
 `tk apply environments/<project>/<environment>`
 
-### KUBERNETES 
+### KUBERNETES
 
 #### CMDs
 
@@ -55,7 +60,7 @@ deleting a group of pods by deleting a namespace
 
 deleting all the pods in a namespace without removing the namespace
 
-`kk delete po --all` 
+`kk delete po --all`
 
 delete every resource in a context (except secrets)
 
